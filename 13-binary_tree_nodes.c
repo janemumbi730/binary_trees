@@ -7,7 +7,7 @@
 
 size_t binary_tree_nodes(const binary_tree_t *tree)
 {
-	size_t lleaf, rleaf;
+	size_t a, b;
 
 	if (tree == NULL)
 	{
@@ -17,7 +17,7 @@ size_t binary_tree_nodes(const binary_tree_t *tree)
 	{
 		return (0);
 	}
-	lleaf = binary_tree_nodes(tree->left);
-	rleaf = binary_tree_nodes(tree->right);
-	return (lleaf + rleaf + 1);
+	a = binary_tree_nodes(tree->left);
+	b = binary_tree_nodes(tree->right);
+	return (a + b + 1);
 }
