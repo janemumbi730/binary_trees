@@ -1,33 +1,8 @@
 #include "binary_trees.h"
 /**
- * binary_tree_height - Measures the height of a binary tree
- * @tree: Pointer to the root node of the tree to measure
- * Return: The height of the binary tree, or 0 if the tree is NULL
- */
-
-size_t binary_tree_height(const binary_tree_t *tree)
-{
-	size_t left_height = 0;
-	size_t right_height = 0;
-
-	if (tree == NULL)
-	{
-		return (-1);
-	}
-
-	if (tree->left != NULL)
-		left_height = 1 + binary_tree_height(tree->left);
-
-	if (tree->right != NULL)
-		right_height = 1 + binary_tree_height(tree->right);
-
-	return ((left_height > right_height) ? (left_height) : (right_height));
-}
-
-/**
- * binary_tree_balance - Measures the balance factor of a binary tree
- * @tree: Pointer to the root node of the tree to measure the balance
- * Return: The balance factor of the binary tree, or 0 if the tree is NULL
+ * binary_tree_balance - gets the balance factor of b tree
+ * @tree: root node
+ * Return: balance factor or 0 if tree is NULL
  */
 
 int binary_tree_balance(const binary_tree_t *tree)
@@ -35,6 +10,31 @@ int binary_tree_balance(const binary_tree_t *tree)
 	if (tree == NULL)
 	return (0);
 
-	return ((int)binary_tree_height
-	(tree->left) - (int)binary_tree_height(tree->right));
+	return ((int)tranverse_rows
+	(tree->left) - (int)tranverse_rows(tree->right));
+}
+
+/**
+ * tranverse_rows - gets rows of b tree
+ * @tree: root node
+ * Return: rows or 0 if tree is NULL
+ */
+
+size_t tranverse_rows(const binary_tree_t *tree)
+{
+	size_t a = 0;
+	size_t b = 0;
+
+	if (tree == NULL)
+	{
+		return (-1);
+	}
+
+	if (tree->left != NULL)
+		a = 1 + tranverse_rows(tree->left);
+
+	if (tree->right != NULL)
+		b = 1 + tranverse_rows(tree->right);
+
+	return ((a > b) ? (a) : (b));
 }
