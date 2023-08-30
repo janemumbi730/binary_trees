@@ -7,26 +7,27 @@
 
 int height_checker(const binary_tree_t *tree)
 {
-        int a, b;
+	int a, b;
 
-        if (tree == NULL)
-                return (0);
-    
+	if (tree == NULL)
+		return (0);
+
 	if (tree->right == NULL)
-        {
-                if (tree->left == NULL)
-                        return (1);
-                return (0);
-        }
-        if (tree->left == NULL)
-                return (0);
+	{
+		if (tree->left == NULL)
+			return (1);
+		return (0);
+	}
 
-        a = height_checker(tree->left);
-        b = height_checker(tree->right);
-  
+	if (tree->left == NULL)
+		return (0);
+
+	a = height_checker(tree->left);
+	b = height_checker(tree->right);
+
 	if (a == b)
-                return (a + 1);
-        return (0);
+		return (a + 1);
+	return (0);
 }
 
 /**
