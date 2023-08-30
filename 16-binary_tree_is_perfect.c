@@ -1,16 +1,18 @@
 #include "binary_trees.h"
 /**
- * compare_branches - checks if brances of a root are equal
- * @tree: tree/subtree to be checked
- * Return: length of nodes, or 0 if failure
+ * height_checker - checks height of b tree
+ * @tree: root node
+ * Return: height or 0 otherwise
  */
-int compare_branches(const binary_tree_t *tree)
+
+int height_checker(const binary_tree_t *tree)
 {
-        int cleft, cright;
+        int a, b;
 
         if (tree == NULL)
                 return (0);
-        if (tree->right == NULL)
+    
+	if (tree->right == NULL)
         {
                 if (tree->left == NULL)
                         return (1);
@@ -19,20 +21,23 @@ int compare_branches(const binary_tree_t *tree)
         if (tree->left == NULL)
                 return (0);
 
-        cleft = compare_branches(tree->left);
-        cright = compare_branches(tree->right);
-        if (cleft == cright)
-                return (cleft + 1);
+        a = height_checker(tree->left);
+        b = height_checker(tree->right);
+  
+	if (a == b)
+                return (a + 1);
         return (0);
 }
+
 /**
- * binary_tree_is_perfect - checks if a binary tree is perfect
- * @tree: a pointer to the root node of the tree to check
- * Return: 1 if perfect, 0 if not/failure
+ * binary_tree_is_perfect - sees if a binary tree is perfect
+ * @tree: root node
+ * Return: 1 if perfect or 0 otherwise
  */
+
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	if (compare_branches(tree) == 0)
+	if (height_checker(tree) == 0)
 		return (0);
 	return (1);
 }
